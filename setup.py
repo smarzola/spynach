@@ -3,7 +3,7 @@ import sys, os
 
 version = '0.4.2'
 
-setup(name='artichoke',
+setup(name='spicy-artichoke',
       version=version,
       description="Simple and Lightweight WSGI Web Framework",
       long_description="""\
@@ -18,8 +18,8 @@ Artichoke is a lightweight WSGI Python framework for rapid prototyping of web ap
                    "Topic :: Software Development :: Libraries :: Application Frameworks",
                    "Environment :: Web Environment"],
       keywords='wsgi web simple light',
-      author='AXANT',
-      author_email='tech@axant.it',
+      author='Simone Marzola',
+      author_email='marzolasimone@gmail.com',
       url='http://www.axantlabs.com/artichoke',
       license='GPL',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
@@ -27,6 +27,7 @@ Artichoke is a lightweight WSGI Python framework for rapid prototyping of web ap
       zip_safe=False,
       install_requires=[
           'webob',
+          'jinja2',
       ],
       entry_points="""
       # -*- Entry points: -*-

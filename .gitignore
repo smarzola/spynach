@@ -1,3 +1,5 @@
 .hg*
 *.pyc
 .idea*
+env/*
+*\.egg-info/*
