@@ -7,7 +7,7 @@ setup(name='spicy-artichoke',
       version=version,
       description="Simple and Lightweight WSGI Web Framework",
       long_description="""\
-Artichoke is a lightweight WSGI Python framework for rapid prototyping of web applications. Artichoke has been developed with a syntax similar to the one of the Turbogears2 framework to permit to develop fast and small web applications which can be quickly switched to a full stack framework when necessary.
+Spycy-Artichoke is a lightweight WSGI Python framework for rapid prototyping of web applications. Spycy-Artichoke has been developed with a syntax similar to the one of the Turbogears2 framework to permit to develop fast and small web applications which can be quickly switched to a full stack framework when necessary.
 """,
       classifiers=["Development Status :: 5 - Production/Stable",
                    "License :: OSI Approved :: GNU General Public License (GPL)",

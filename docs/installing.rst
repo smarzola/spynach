@@ -28,7 +28,7 @@ Artichoke
 
 .. code-block:: bash
 
-    $ sudo easy_install artichoke
+    $ sudo easy_install spicy-artichoke
 
 This should install the last stable release of artichoke and download 
 all the required dependencies including Genshi, Paste and WebOb.
@@ -38,5 +38,5 @@ Upgrading Artichoke
 
 .. code-block:: bash
 
-    $ sudo easy_install -U artichoke
+    $ sudo easy_install -U spicy-artichoke
 

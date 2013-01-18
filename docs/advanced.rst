@@ -1,7 +1,7 @@
 Advanced topics
 ===================
 
-This section will cover some advanced functions of Artichoke like helpers, authentication and form builder
+This section will cover some advanced functions of Spicy-Artichoke like helpers, authentication and form builder
 
 Exposing Helpers inside templates
 -----------------------------------

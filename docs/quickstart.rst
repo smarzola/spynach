@@ -1,7 +1,7 @@
 Quickstarting with artichoke
 ==============================
 
-Creating an artichoke application
+Creating a spicy-artichoke application
 ------------------------------------
 
 Artichoke applications can be created from the `artichoke.application.Application` by
