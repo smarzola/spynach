@@ -1,17 +1,17 @@
 How to install Artichoke
 ===========================
 
-You can install artichoke both from an official release trough setuptools or by fetching the development version from the repositories
+You can install spicy-artichoke both from an official release trough setuptools or by fetching the development version from the repositories
 
 Installing stable version with setuptools
 -------------------------------------------
 
-Artichoke releases require Python and setuptools to be installed
+Spicy-Artichoke releases require Python and setuptools to be installed
 
 Python
 ~~~~~~~~
 
-Artichoke works with any version of python between 2.5 and 2.7. 
+Spicy-Artichoke works with any version of python between 2.5 and 2.7.
 The most widely deployed version of python at the moment of this writing is version 2.5.
 
 Setuptools
@@ -23,7 +23,7 @@ Setuptools
 
 You may also use your system's package for setuptools.
 
-Artichoke
+Spycy-Artichoke
 ~~~~~~~~~~~~
 
 .. code-block:: bash
@@ -33,7 +33,7 @@ Artichoke
 This should install the last stable release of artichoke and download 
 all the required dependencies including Genshi, Paste and WebOb.
 
-Upgrading Artichoke
+Upgrading Spicy-Artichoke
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
