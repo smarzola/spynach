@@ -1,7 +1,7 @@
 import spynach, os, mimetypes, base64
 from spynach import request, response, expose, url, redirect, flash
-from spynach import FormBuilder
 from model import User
+from spynach.forms import Form, InputField, Div
 
 class SubController(spynach.Controller):
     @expose()
@@ -23,7 +23,13 @@ class RootController(spynach.Controller):
 
     @expose('index')
     def index(self, args, params):
-        return dict(foo=False, form=FormBuilder('/echo_image', {'image':{'type':'file'}}))
+        form = Form(action=url('/echo_image'), children=[
+            Div(children=[
+                InputField(type='text', name='text', placeholder='ciao', label='pippo')
+            ]),
+            InputField(type='file', name="image")
+        ])
+        return dict(foo=False, form=form)
 
     @expose()
     def echo_image(self, args, params):
