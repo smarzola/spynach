@@ -7,7 +7,7 @@ from the repositories
 Installing stable version with setuptools
 -------------------------------------------
 
-Spicy-Artichoke releases require Python and setuptools to be installed
+Spynach releases require Python and setuptools to be installed
 
 Python
 ~~~~~~~~
