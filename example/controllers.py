@@ -1,8 +1,9 @@
-import artichoke, os, mimetypes, base64
-from artichoke import request, response, expose, url, redirect, flash
-from artichoke import FormBuilder
+import spynach, os, mimetypes, base64
+from spynach import request, response, expose, url, redirect, flash
+from spynach import FormBuilder
+from model import User
 
-class SubController(artichoke.Controller):
+class SubController(spynach.Controller):
     @expose()
     def about(self, args, params):
         return 'HELLO %s' % str(args)
@@ -15,7 +16,7 @@ class SubController(artichoke.Controller):
     def not_found(self, args, params):
         return 'Sub Not Found'
 
-class RootController(artichoke.Controller):
+class RootController(spynach.Controller):
     def __init__(self, application, templates_path, helpers):
         super(RootController, self).__init__(application, templates_path, helpers)
         self.sub = SubController(application, os.path.join(templates_path, 'sub'), helpers)
@@ -72,10 +73,3 @@ class RootController(artichoke.Controller):
     def logout(self, args, params):
         response.identity = None
         return redirect('/index')
-
-
-app = artichoke.Application(root=RootController, templates_path='views')
-
-if __name__ == '__main__':
-    from artichoke.server import serve
-    serve(app)
