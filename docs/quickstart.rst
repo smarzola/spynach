@@ -1,24 +1,24 @@
-Quickstarting with artichoke
+Quickstarting with spynach
 ==============================
 
-Creating a spicy-artichoke application
+Creating a spynach application
 ------------------------------------
 
-Artichoke applications can be created from the `artichoke.application.Application` by
-passing a root `artichoke.controller.Controller` and a path where to find the templates
+spynach applications can be created from the `spynach.application.Application` by
+passing a root `spynach.controller.Controller` and a path where to find the templates
 exposed by the controller methods.
 
 You can serve your application both using `mod_wsgi <http://www.modwsgi.org>`_ or by using the internal
-artichoke wsgi server. The internal server will also reload application if any file of the application
+spynach wsgi server. The internal server will also reload application if any file of the application
 itself is changed, this comes at a high performance cost so it is only intended for development
 and not for production deploy.
 
 .. code-block:: python
 
-    import artichoke
-    from artichoke.server import serve
+    import spynach
+    from spynach.server import serve
 
-    app = artichoke.Application(root=RootController, templates_path='views')
+    app = spynach.Application(root=RootController, templates_path='views')
 
     if __name__ == '__main__':
         serve(app)
@@ -26,26 +26,26 @@ and not for production deploy.
 Creating a controller for your application
 -------------------------------------------------
 
-Each artichoke application requires a root controller which will serve requests sent
+Each spynach application requires a root controller which will serve requests sent
 to the application itself. The root controller can have any number of sub controllers
 as instance variables to serve nested urls.
 
 .. code-block:: python
 
-    import artichoke
-    from artichoke import expose
-    from artichoke.server import serve
+    import spynach
+    from spynach import expose
+    from spynach.server import serve
 
-    class RootController(artichoke.Controller):
+    class RootController(spynach.Controller):
         @expose(content_type='text/plain')
         def index(self, args, params):
-            return 'Hi from my first artichoke application'
+            return 'Hi from my first spynach application'
 
         @expose()
         def hello(self, args, params):
             return '<html><head></head><body>Hello World</body></html>'
 
-    serve(artichoke.Application(root=RootController, templates_path='views'))
+    serve(spynach.Application(root=RootController, templates_path='views'))
 
 
 
@@ -83,17 +83,17 @@ Each entry inside the dict will be exposed as a variable inside the template
 
 .. code-block:: python
 
-    import artichoke
-    from artichoke import request, response, expose, redirect, url, flash
-    from artichoke.server import serve
+    import spynach
+    from spynach import request, response, expose, redirect, url, flash
+    from spynach.server import serve
 
-    class RootController(artichoke.Controller):
+    class RootController(spynach.Controller):
         @expose('index')
         def index(self, args, params):
             who = params.get('who', 'World')
             return dict(who=who)
 
-    serve(artichoke.Application(root=RootController, templates_path='views'))
+    serve(spynach.Application(root=RootController, templates_path='views'))
 
 View Example
 ~~~~~~~~~~~~~~~~~~~~
@@ -128,16 +128,16 @@ method of the *SubController* class as it has been created inside the RootContro
 
 .. code-block:: python
 
-    import artichoke
-    from artichoke import request, response, expose, redirect, url, flash
-    from artichoke.server import serve
+    import spynach
+    from spynach import request, response, expose, redirect, url, flash
+    from spynach.server import serve
 
-    class SubController(artichoke.Controller):
+    class SubController(spynach.Controller):
         @expose()
         def hello(self, args, params):
             return 'Hello World'
 
-    class RootController(artichoke.Controller):
+    class RootController(spynach.Controller):
         def __init__(self, templates_path, helpers):
             super(RootController, self).__init__(templates_path, helpers)
             self.sub = SubController(os.path.join(templates_path, 'sub'), helpers)
@@ -147,12 +147,12 @@ method of the *SubController* class as it has been created inside the RootContro
             who = params.get('who', 'World')
             return dict(who=who)
 
-    serve(artichoke.Application(root=RootController, templates_path='views'))
+    serve(spynach.Application(root=RootController, templates_path='views'))
 
 Utility Functions
 =========================
 
-Artichoke Exposes a set of functions to help you create your application:
+spynach Exposes a set of functions to help you create your application:
 
  * **redirect(where)** which will redirect the user to another url
 
@@ -178,8 +178,8 @@ Artichoke Exposes a set of functions to help you create your application:
 The Request and Response objects
 ==================================
 
-``artichoke.request`` and ``artichoke.response`` objects are automatically
-created by artichoke itself for each request.
+``spynach.request`` and ``spynach.response`` objects are automatically
+created by spynach itself for each request.
 For documentation about the request and response objects you can refer to
 the `WebOb <http://pythonpaste.org/webob>`_ documentation.
 

@@ -1,34 +1,34 @@
 Advanced topics
 ===================
 
-This section will cover some advanced functions of Spicy-Artichoke like helpers, authentication and form builder
+This section will cover some advanced functions of Spicy-spynach like helpers, authentication and form builder
 
 Exposing Helpers inside templates
 -----------------------------------
 
-By default when you render a template from artichoke **response**, **request** and the **h** variables
+By default when you render a template from spynach **response**, **request** and the **h** variables
 will be available inside the template. The last one will expose a collection of helpers useful while
 creating templates.
 
 By default this collection is empty, but you can override it by passing a different object to the
-**config** parameter of the artichoke *Application*
+**config** parameter of the spynach *Application*
 
 .. code-block:: python 
 
     from datetime import datetime
-    import artichoke
-    from artichoke.server import serve
+    import spynach
+    from spynach.server import serve
 
     class AppHelpers(object):
         def copyright(self):
             return 'Copyright 2010-%s' % datetime.now().strftime('%Y')
 
-    class RootController(artichoke.Controller):
+    class RootController(spynach.Controller):
         @expose('index')
         def index(self, args, params):
             return dict()
 
-    serve(artichoke.Application(root=RootController, templates_path='views'))
+    serve(spynach.Application(root=RootController, templates_path='views'))
 
 .. code-block:: html
 
@@ -48,7 +48,7 @@ your helpers.
 Authentication
 ------------------
 
-By default the Artichoke framework will enable a simple authentication layer which will make possible
+By default the spynach framework will enable a simple authentication layer which will make possible
 to login users by saving session cookies inside their browsers.
 
 You will have just to implement your **/login** and **/logout** methods to save and delete the credentials
@@ -62,7 +62,7 @@ You can then logout the user by setting response.identity to **None**
 
 .. code-block:: python
 
-    from artichoke import redirect, response, flash
+    from spynach import redirect, response, flash
 
     @expose()
     def login(self, args, params):
@@ -86,7 +86,7 @@ You can then logout the user by setting response.identity to **None**
 Form Builder
 ----------------
 
-The **artichoke.forms.FormBuilder** class permits to quickly create forms inside your web pages.
+The **spynach.forms.FormBuilder** class permits to quickly create forms inside your web pages.
 
 The first parameter of the constructor is the url where to submit the form data, the second parameter
 is a dictionary with the field to expose inside the form and the third and optional one is the order
@@ -114,11 +114,11 @@ To display the form inside the template you must pass the form to the template a
 Custom Middlewares
 ----------------------
 
-Since version 0.3.1 Artichoke supports middlewares.
+Since version 0.3.1 spynach supports middlewares.
 Registering middlewares is quite simple, just passing a list of middleware to create
 to the ``middlewares`` configuration variable is enough.
 
-Each middleware will receive the current application:``app``, artichoke core:``core``
+Each middleware will receive the current application:``app``, spynach core:``core``
 and configuration options:``config`` at construction
 
 You can for example create a middleware that handles database models with sqlalchemy:
@@ -155,7 +155,7 @@ You can for example create a middleware that handles database models with sqlalc
                 raise
             return ans
 
-    app = artichoke.Application(root=RootController, templates_path='views', 
+    app = spynach.Application(root=RootController, templates_path='views', 
                                 config={'sqlalchemy.url':'sqlite:///devdata.db',
                                         'sqlalchemy.session':DBSession,
                                         'middlewares':[SQLAMiddleware]})
@@ -181,6 +181,6 @@ This parameter contains a dictionary with various configuration options about th
 
  * **mail_errors_to** (*default: None*) Mail crash tracebacks to the specified address
 
- * **mail_errors_from** (*default: 'artichoke@localhost'*) The *From* field of mailed tracebacks
+ * **mail_errors_from** (*default: 'spynach@localhost'*) The *From* field of mailed tracebacks
 
  * **traceback** (*default: False*) On crash print traceback inside the web browser (you should disable this on production)
