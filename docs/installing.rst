@@ -12,7 +12,7 @@ Spicy-Artichoke releases require Python and setuptools to be installed
 Python
 ~~~~~~~~
 
-Spicy-Artichoke works with any version of python between 2.5 and 2.7.
+Spynach works with any version of python between 2.5 and 2.7.
 
 Setuptools
 ~~~~~~~~~~~~
