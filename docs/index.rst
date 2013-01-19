@@ -3,18 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Spicy-Artichoke!
+Welcome to Spynach.
 =====================================
 
-Spicy-Artichoke is a lightweight WSGI Python framework for rapid prototyping of web applications.
-Spicy-Artichoke has been developed with a syntax similar to the one of the Turbogears2 framework
-to permit to develop fast and small web applications which can be quickly switched to a full stack
-framework when necessary.
+Spynach is a lightweight WSGI Python framework for rapid prototyping of web applications built upon Artichoke.
+Spynach has been developed with a syntax similar to the one of the Turbogears2 framework to permit to develop fast
+and small web applications which can be quickly switched to a full stack framework when necessary.
+It includes ming (mongodb ODM) and Jinja2 template engine.
 
-Getting Started with Spicy-Artichoke
+Getting Started with Spynach
 ====================================
 
-Get Spicy-Artichoke installed, learn how to create a new Spicy-Artichoke application
+Get Spynach installed, learn how to create a new Spynach application
 and explore examples.
 
 .. toctree::
