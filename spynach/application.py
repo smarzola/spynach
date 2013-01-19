@@ -1,3 +1,5 @@
+from mongo_session import init_model
+from ming import create_datastore
 from webob import Request, Response
 from webob.exc import HTTPException
 from authenticator import CookieAuthenticator
@@ -20,6 +22,15 @@ class ArtichokeCore(object):
             self.authenticator = CookieAuthenticator()
         else:
             self.authenticator = requested_authenticator()
+
+        mongo_url = config.get('mongo_url')
+        if mongo_url:
+            if mongo_url[0]=='$':
+                mongo_url = os.getenv(mongo_url[1:])
+            self.mongo_engine = create_datastore(mongo_url)
+            init_model(self.mongo_engine)
+        else:
+            self.mongo_engine = None
 
         self.root = root(self, templates_path, config.get('helpers', ArtichokeHelpers()))
 

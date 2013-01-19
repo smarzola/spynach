@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# spicy-artichoke documentation build configuration file, created by
+# spynach documentation build configuration file, created by
 # sphinx-quickstart on Fri Jan 18 22:56:50 2013.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'spicy-artichoke'
+project = u'spynach'
 copyright = u'2013, Simone Marzola'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -183,7 +183,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'spicy-artichoke.tex', u'spicy-artichoke Documentation',
+  ('index', 'spynach.tex', u'spynach Documentation',
    u'Simone Marzola', 'manual'),
 ]
 
@@ -213,7 +213,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'spicy-artichoke', u'spicy-artichoke Documentation',
+    ('index', 'spynach', u'spynach Documentation',
      [u'Simone Marzola'], 1)
 ]
 
@@ -227,8 +227,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'spicy-artichoke', u'spicy-artichoke Documentation',
-   u'Simone Marzola', 'spicy-artichoke', 'One line description of project.',
+  ('index', 'spynach', u'spynach Documentation',
+   u'Simone Marzola', 'spynach', 'One line description of project.',
    'Miscellaneous'),
 ]
 
