@@ -29,7 +29,8 @@ Spynach is a lightweight WSGI Python framework for rapid prototyping of web appl
           'webob',
           'paste',
           'jinja2',
-          'ming'
+          'ming',
+          'wtforms'
       ],
       entry_points="""
       # -*- Entry points: -*-

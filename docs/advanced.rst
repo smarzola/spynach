@@ -83,38 +83,16 @@ You can then logout the user by setting response.identity to **None**
         return redirect('/index')
 
 
-Form Builder
+Forms Builder
 ----------------
 
-The **spynach.forms.FormBuilder** class permits to quickly create forms inside your web pages.
-
-The first parameter of the constructor is the url where to submit the form data, the second parameter
-is a dictionary with the field to expose inside the form and the third and optional one is the order
-of the fields inside the form (omitting it will cause random order).
-
-Each entry inside the fields dict will need a key with the same name of the parameter and a value
-which must be a dictionary itself. The dictionary value can specify a label and a type for the field
-(valid types are *textarea*, *password*, *text*, *file*). If nothing is specified it will default
-to a text field with a label equal to the field key capitalized.
-
-.. code-block:: python
-
-        new_project_form = FormBuilder('/add_project', dict(name={},
-                                                            download_url={},
-                                                            short_desc={'label':'Short Description:'},
-                                                            long_desc={'label':'Long Description:',
-                                                                       'type':'textarea'},
-                                                            icon={'type':'file'}),
-                                       fields_order=['name', 'download_url', 'icon', 'short_desc',
-                                                     'long_desc'])
-
-
-To display the form inside the template you must pass the form to the template and call the **form.render()** method
+Forms rendering and validation are handled by WTForms package, pleas see `WTForms Documentation
+<http://wtforms.simplecodes.com/>`_.
 
 Custom Middlewares
 ----------------------
 
-Since version 0.3.1 spynach supports middlewares.
+Spynach supports middlewares.
 Registering middlewares is quite simple, just passing a list of middleware to create
 to the ``middlewares`` configuration variable is enough.
 
@@ -184,3 +162,6 @@ This parameter contains a dictionary with various configuration options about th
  * **mail_errors_from** (*default: 'spynach@localhost'*) The *From* field of mailed tracebacks
 
  * **traceback** (*default: False*) On crash print traceback inside the web browser (you should disable this on production)
+
+ * **mongo_url** (*default: None*) The mongodb connection url, in the form mongodb://user:password@host/dbname.
+   Accepts also env vars in the form $VARIABLE_NAME. If *None* the ming ODM support is disabled.

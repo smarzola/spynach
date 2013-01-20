@@ -1,7 +1,12 @@
 import spynach, os, mimetypes, base64
 from spynach import request, response, expose, url, redirect, flash
 from model import User
-from spynach.forms import Form, InputField, Div
+from wtforms import Form, TextField, PasswordField
+
+class SimpleForm(Form):
+    username = TextField('username')
+    password = PasswordField('password')
+
 
 class SubController(spynach.Controller):
     @expose()
@@ -23,12 +28,7 @@ class RootController(spynach.Controller):
 
     @expose('index')
     def index(self, args, params):
-        form = Form(action=url('/echo_image'), children=[
-            Div(children=[
-                InputField(type='text', name='text', placeholder='ciao', label='pippo')
-            ]),
-            InputField(type='file', name="image")
-        ])
+        form = SimpleForm(params)
         return dict(foo=False, form=form)
 
     @expose()

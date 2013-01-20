@@ -98,7 +98,7 @@ Each entry inside the dict will be exposed as a variable inside the template
 View Example
 ~~~~~~~~~~~~~~~~~~~~
 
-Save the following code as **index.choke** inside the *views* directory (the one
+Save the following code as **index.jinja** inside the *views* directory (the one
 passed to the Application as **templates_path** argument) and it will be
 served when calling the */index* url as the *@expose* decorator declared
 that the index method should serve the index template.
@@ -107,11 +107,11 @@ that the index method should serve the index template.
 
     <html>
         <head>
-            <title>Hello ${who}</title>
+            <title>Hello {{ who }}</title>
         </head>
 
         <body>
-            Welcome ${who}
+            Welcome {{ who }}
         </body>
     </html> 
 
@@ -168,11 +168,11 @@ spynach Exposes a set of functions to help you create your application:
 
 .. code-block:: html
 
-    ${%if response.flash_obj:}
+    {% if response.flash_obj }}
         <div>
-            <div class="${response.flash_obj['class']}">${response.flash_obj['msg']}</div>
+            <div class="{{ response.flash_obj['class'] }}">{{ response.flash_obj['msg'] }}</div>
         </div>
-    ${%end}
+    {% endif %}
 
 
 The Request and Response objects
