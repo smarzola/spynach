@@ -7,7 +7,9 @@ setup(name='spynach',
       version=version,
       description="Simple and Lightweight WSGI Web Framework",
       long_description="""\
-Spynach is a lightweight WSGI Python framework for rapid prototyping of web applications. Spycy-Artichoke has been developed with a syntax similar to the one of the Turbogears2 framework to permit to develop fast and small web applications which can be quickly switched to a full stack framework when necessary.
+Spynach is a lightweight WSGI Python framework for rapid prototyping of web applications. Spynach has been developed
+with a syntax similar to the one of the Turbogears2 framework to permit to develop fast and small web applications which
+can be quickly switched to a full stack framework when necessary.
 """,
       classifiers=["Development Status :: 5 - Production/Stable",
                    "License :: OSI Approved :: GNU General Public License (GPL)",
@@ -26,7 +28,7 @@ Spynach is a lightweight WSGI Python framework for rapid prototyping of web appl
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'webob',
+          'webob>1.2b4',
           'paste',
           'jinja2',
           'ming',

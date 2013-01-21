@@ -2,7 +2,7 @@ from webob import Request, Response
 from webob.exc import HTTPFound
 import inspect, pickle, base64, types, urllib
 from thread_locals import ThreadLocalProxy
-from template import ArtichokeTemplateLoader
+from template import SpynachTemplateLoader
 try:
     import json
 except ImportError:
@@ -21,11 +21,11 @@ def expose(template = None,
     def decorate(f):
         f.exposed = True
 
-        if not hasattr(f, 'artichoke'):
-            f.artichoke = {}
+        if not hasattr(f, 'spynach'):
+            f.spynach = {}
 
-        f.artichoke['template'] = template
-        f.artichoke['content-type'] = content_type
+        f.spynach['template'] = template
+        f.spynach['content-type'] = content_type
         return f
     return decorate
 
@@ -62,7 +62,7 @@ class Controller(object):
     def __init__(self, application, template_path, helpers):
         self.template_path = template_path
         self.application = application
-        self.loader = ArtichokeTemplateLoader(template_path, self.application.minify_templates)
+        self.loader = SpynachTemplateLoader(template_path)
         self.helpers = helpers
         self.templates = {}
 
@@ -74,7 +74,7 @@ class Controller(object):
                 tmpl = self.loader.load(template)
                 self.templates[template] = tmpl
         else:
-            self.loader = ArtichokeTemplateLoader(self.template_path, self.application.minify_templates)
+            self.loader = SpynachTemplateLoader(self.template_path, self.application.minify_templates)
             tmpl = self.loader.load(template)
 
         return tmpl.render(params)
@@ -90,7 +90,7 @@ class Controller(object):
    </head>
    <body>
        <h1>Page Not Found</h1>
-       <div style="font-size:small">Artichoke Framework</div>
+       <div style="font-size:small">spynach Framework</div>
    </body>
 </html>
 '''
@@ -130,10 +130,10 @@ class Controller(object):
         self.do_call(call, request, path[:])
 
     def do_call(self, call, request, path):
-        response.content_type = call.artichoke['content-type']
+        response.content_type = call.spynach['content-type']
         self.inject_tools(request, response)
 
-        if call.artichoke['template']:
+        if call.spynach['template']:
             tmpl_context = {}
             tmpl_context['a'] = type('Bunch', (object,), {'url':staticmethod(url)})
             tmpl_context['h'] = self.helpers
@@ -141,9 +141,9 @@ class Controller(object):
             tmpl_context['response'] = response
             tmpl_context.update(call(path, request.params))
 
-            template = call.artichoke['template']
+            template = call.spynach['template']
             response.body = self.render(template, tmpl_context)
-        elif call.artichoke['content-type'] == 'application/json':
+        elif call.spynach['content-type'] == 'application/json':
             response.body = json.dumps(call(path, request.params))
         else:
             response.body = call(path, request.params)

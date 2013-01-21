@@ -1,4 +1,4 @@
 *.pyc
 .idea*
 env/*
-*\.egg-info/*
+*\.egg*

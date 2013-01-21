@@ -1,18 +1,18 @@
 from mongo_session import init_model
 from ming import create_datastore
 from webob import Request, Response
+from webob.static import FileApp
 from webob.exc import HTTPException
 from authenticator import CookieAuthenticator
 from mail_traceback import send_traceback, format_traceback
 import traceback, mimetypes, os
 from controller import request as a_request, response as a_response
 
-class ArtichokeHelpers(object):
+class SpynachHelpers(object):
     pass
 
-class ArtichokeCore(object):
+class SpynachCore(object):
     def __init__(self, root, templates_path, config={}):
-        self.minify_templates = config.get('templates.minify', False)
         self.statics = config.get('statics', 'public')
         self.autoreload_templates = config.get('autoreload', False)
         self.force_request_encoding = config.get('force_request_encoding', 'utf-8')
@@ -32,23 +32,21 @@ class ArtichokeCore(object):
         else:
             self.mongo_engine = None
 
-        self.root = root(self, templates_path, config.get('helpers', ArtichokeHelpers()))
+        self.root = root(self, templates_path, config.get('helpers', SpynachHelpers()))
 
     def __call__(self, environ, start_response):
         request = Request(environ=environ)
-        environ['artichoke.locals'].register(environ, a_request, request)
+        environ['spynach.locals'].register(environ, a_request, request)
 
-        response = Response(body="Artichoke Default Page", content_type='text/html', charset='utf-8')
-        environ['artichoke.locals'].register(environ, a_response, response)
+        response = Response(body="spynach Default Page", content_type='text/html', charset='utf-8')
+        environ['spynach.locals'].register(environ, a_response, response)
 
         if self.force_request_encoding:
             request.charset = self.force_request_encoding
 
         static_path = self.statics + request.path_info
         if os.path.exists(static_path) and os.path.isfile(static_path):
-            response.body = open(static_path).read()
-            response.status = 200
-            response.content_type = mimetypes.guess_type(static_path)[0]
+            response = FileApp(static_path)
         else:
             try:
                 self.authenticator.authenticate(request)
@@ -63,14 +61,14 @@ class ErrorMiddleware(object):
     def __init__(self, app, core, config):
         self.app = app
         self.mail_errors_to = config.get('mail_errors_to')
-        self.mail_errors_from = config.get('mail_errors_from', 'artichoke@localhost')
+        self.mail_errors_from = config.get('mail_errors_from', 'spynach@localhost')
         self.traceback = config.get('traceback', True)
  
     def __call__(self, environ, start_response):
         try:
             return self.app(environ, start_response)
         except:
-            resp = Response(body="Artichoke Error Middlware", content_type='text/html', charset='utf-8')
+            resp = Response(body="Spynach Error Middlware", content_type='text/html', charset='utf-8')
 
             if self.mail_errors_to:
                 send_traceback(self.mail_errors_from, self.mail_errors_to)
@@ -97,20 +95,20 @@ class ThreadLocalsManager(object):
 
     def __call__(self, environ, start_response):
         try:
-            environ['artichoke.locals'] = self
-            environ['artichoke.registered_locals'] = []
+            environ['spynach.locals'] = self
+            environ['spynach.registered_locals'] = []
             return self.app(environ, start_response)
         finally:
-            for ri in environ['artichoke.registered_locals']:
+            for ri in environ['spynach.registered_locals']:
                 ri._pop_object()
 
     def register(self, environ, proxy, instance):
-        environ['artichoke.registered_locals'].append(proxy)
+        environ['spynach.registered_locals'].append(proxy)
         proxy._set_object(instance)
 
 class Application(object):
     def __init__(self, root, templates_path, config={}):
-        self.core = ArtichokeCore(root, templates_path, config)
+        self.core = SpynachCore(root, templates_path, config)
         self.app = self.core
 
         for Middleware in config.get('middlewares', []):

@@ -1,6 +1,6 @@
 import jinja2
 
-class ArtichokeTemplateLoader(object):
+class SpynachTemplateLoader(object):
     def __init__(self, path, *args, **kw):
         self.jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(path))
 

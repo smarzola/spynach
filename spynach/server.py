@@ -125,7 +125,7 @@ def serve(app):
 
     def reloaded_main():
         httpd = make_server('0.0.0.0', 8080, app)
-        print "Artichoke Serving on port 8080..."
+        print "Spynach Serving on port 8080..."
         httpd.serve_forever()
 
     main(reloaded_main)
