@@ -62,21 +62,12 @@ class Controller(object):
     def __init__(self, application, template_path, helpers):
         self.template_path = template_path
         self.application = application
-        self.loader = SpynachTemplateLoader(template_path)
+        self.loader = SpynachTemplateLoader(template_path, self.application.autoreload_templates)
         self.helpers = helpers
         self.templates = {}
 
     def render(self, template, params):
-        if not self.application.autoreload_templates:
-            try:
-                tmpl = self.templates[template]
-            except:
-                tmpl = self.loader.load(template)
-                self.templates[template] = tmpl
-        else:
-            self.loader = SpynachTemplateLoader(self.template_path, self.application.minify_templates)
-            tmpl = self.loader.load(template)
-
+        tmpl = self.loader.load(template)
         return tmpl.render(params)
 
     @expose()

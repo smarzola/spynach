@@ -1,8 +1,8 @@
 import jinja2
 
 class SpynachTemplateLoader(object):
-    def __init__(self, path, *args, **kw):
-        self.jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(path))
+    def __init__(self, path, autoreload):
+        self.jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(path), auto_reload=autoreload)
 
     def load(self, tmpl):
         if not tmpl.endswith('jinja'):

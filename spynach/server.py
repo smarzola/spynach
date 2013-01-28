@@ -121,7 +121,6 @@ def main(main_func, args=None, kwargs=None):
 def serve(app):
     #This is here just to create a simple WSGI server for development environment
     from wsgiref.simple_server import make_server
-    app.autoreload_templates = True
 
     def reloaded_main():
         httpd = make_server('0.0.0.0', 8080, app)
