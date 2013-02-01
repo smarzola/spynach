@@ -1,7 +1,8 @@
 Welcome to Spynach!
 =====================================
 
-.. image:: https://travis-ci.org/simock85/spynach.png
+.. image:: https://travis-ci.org/simock85/spynach.png?branch=master
+   :target: http://travis-ci.org/simock85/spynach
 
 Spynach is a fast and lightweight WSGI Python framework for rapid prototyping of web applications, built upon
 `Artichoke <http://bitbucket.org/axant/artichoke>`_.
