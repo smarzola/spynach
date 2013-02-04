@@ -5,7 +5,7 @@ from webob.static import FileApp
 from webob.exc import HTTPException
 from authenticator import CookieAuthenticator
 from mail_traceback import send_traceback, format_traceback
-import traceback, mimetypes, os
+import traceback, os
 from controller import request as a_request, response as a_response
 
 class SpynachHelpers(object):
