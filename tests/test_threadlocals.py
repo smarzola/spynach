@@ -1,6 +1,6 @@
 import time
 from threading import Thread
-from artichoke.thread_locals import ThreadLocalProxy
+from spynach.thread_locals import ThreadLocalProxy
 
 request = ThreadLocalProxy()
 
