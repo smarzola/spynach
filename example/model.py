@@ -1,8 +1,8 @@
 from ming import schema
 from ming.odm import FieldProperty
 from ming.odm.declarative import MappedClass
-from spynach.mongo_session import DBSession
 from hashlib import sha256
+from spynach_ming import DBSession
 
 class User(MappedClass):
     class __mongometa__:

@@ -12,7 +12,9 @@ and small web applications which can be quickly switched to a full stack framewo
 
 Spynach ships packed with a bunch of useful tools:
 
-- Ming (mongodb ODM)
 - Jinja2 template engine
 - WTForms for forms validation and rendering
+
+Since version 0.3 Spynach supports pluggables, the mongodb native support has been dropped in favour of the spynach_ming
+plugin.
 

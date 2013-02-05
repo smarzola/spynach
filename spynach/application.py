@@ -1,5 +1,3 @@
-from mongo_session import init_model
-from ming import create_datastore
 from webob import Request, Response
 from webob.static import FileApp
 from webob.exc import HTTPException
@@ -22,15 +20,6 @@ class SpynachCore(object):
             self.authenticator = CookieAuthenticator()
         else:
             self.authenticator = requested_authenticator()
-
-        mongo_url = config.get('mongo_url')
-        if mongo_url:
-            if mongo_url[0]=='$':
-                mongo_url = os.getenv(mongo_url[1:])
-            self.mongo_engine = create_datastore(mongo_url)
-            init_model(self.mongo_engine)
-        else:
-            self.mongo_engine = None
 
         self.root = root(self, templates_path, config.get('helpers', SpynachHelpers()))
 
@@ -111,8 +100,8 @@ class Application(object):
         self.core = SpynachCore(root, templates_path, config)
         self.app = self.core
 
-        for Middleware in config.get('middlewares', []):
-            self.app = Middleware(self.app, self.core, config)
+        for plug in config.get('plugs', []):
+            self.app = plug(self.app, self.core, config)
 
         self.app = ErrorMiddleware(self.app, self.core, config)
         self.app = ThreadLocalsManager(self.app)
