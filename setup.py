@@ -26,6 +26,7 @@ can be quickly switched to a full stack framework when necessary.
       license='GPL',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
+      data_files=[('', ['README.rst'])],
       zip_safe=False,
       install_requires=[
           'webob>1.2b4',
